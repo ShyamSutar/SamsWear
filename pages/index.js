@@ -1,6 +1,4 @@
 import Head from 'next/head'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import Image from 'next/image'
 
 export default function Home() {
@@ -12,7 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <Navbar/>
+      
 
       <div>
         <Image src="/head.jpg" width={2200} height={500} alt='heading Image'/>
@@ -98,7 +96,6 @@ export default function Home() {
   </div>
 </section>
 
-      <Footer/>
       
     </div>
   )
