@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useRef } from "react";
-import { AiOutlineShoppingCart, AiFillCloseCircle } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
+import { BsFillBagCheckFill } from "react-icons/bs";
 
 const Navbar2 = () => {
   const toggleCart = () => {
@@ -44,7 +45,7 @@ const Navbar2 = () => {
         <AiOutlineShoppingCart className="text-3xl text-center mx-auto" onClick={toggleCart}/>
       </div>
 
-      <div ref={ref} className="sidecart absolute top-0 right-0 bg-pink-100 py-10 px-8 z-10 w-72 tansform transition-transform translate-x-full ">
+      <div ref={ref} className="sidecart absolute top-0 right-0 bg-pink-100 py-10 px-8 z-10 w-72 tansform transition-transform translate-x-full min-h-full">
 
       <h2 className="font-bold text-xl text-center">Shopping Cart</h2>
 
@@ -54,11 +55,53 @@ const Navbar2 = () => {
         <li>
           <div className="item flex my-5">
           <div className="w-2/3 font-semibold">Tshirts - Wear the Code</div>
-          <div className="flex items-center justify-center w-1/3 font-semibold">1</div>
+          <div className="flex items-center justify-center w-1/3 font-semibold text-lg"><AiFillMinusCircle  className="cursor-pointer text-pink-500"/> <span className="mx-2 text-sm">1</span> <AiFillPlusCircle className="cursor-pointer text-pink-500"/></div>
           </div>
         </li>
+
+        <li>
+          <div className="item flex my-5">
+          <div className="w-2/3 font-semibold">Tshirts - Wear the Code</div>
+          <div className="flex items-center justify-center w-1/3 font-semibold text-lg"><AiFillMinusCircle  className="cursor-pointer text-pink-500"/> <span className="mx-2 text-sm">1</span> <AiFillPlusCircle className="cursor-pointer text-pink-500"/></div>
+          </div>
+        </li>
+
+        <li>
+          <div className="item flex my-5">
+          <div className="w-2/3 font-semibold">Tshirts - Wear the Code</div>
+          <div className="flex items-center justify-center w-1/3 font-semibold text-lg"><AiFillMinusCircle  className="cursor-pointer text-pink-500"/> <span className="mx-2 text-sm">1</span> <AiFillPlusCircle className="cursor-pointer text-pink-500"/></div>
+          </div>
+        </li>
+
+        <li>
+          <div className="item flex my-5">
+          <div className="w-2/3 font-semibold">Tshirts - Wear the Code</div>
+          <div className="flex items-center justify-center w-1/3 font-semibold text-lg"><AiFillMinusCircle  className="cursor-pointer text-pink-500"/> <span className="mx-2 text-sm">1</span> <AiFillPlusCircle className="cursor-pointer text-pink-500"/></div>
+          </div>
+        </li>
+
+        <li>
+          <div className="item flex my-5">
+          <div className="w-2/3 font-semibold">Tshirts - Wear the Code</div>
+          <div className="flex items-center justify-center w-1/3 font-semibold text-lg"><AiFillMinusCircle  className="cursor-pointer text-pink-500"/> <span className="mx-2 text-sm">1</span> <AiFillPlusCircle className="cursor-pointer text-pink-500"/></div>
+          </div>
+        </li>
+
+        <li>
+          <div className="item flex my-5">
+          <div className="w-2/3 font-semibold">Tshirts - Wear the Code</div>
+          <div className="flex items-center justify-center w-1/3 font-semibold text-lg"><AiFillMinusCircle  className="cursor-pointer text-pink-500"/> <span className="mx-2 text-sm">1</span> <AiFillPlusCircle className="cursor-pointer text-pink-500"/></div>
+          </div>
+        </li>
+        <li>
+          <div className="item flex my-5">
+          <div className="w-2/3 font-semibold">Tshirts - Wear the Code</div>
+          <div className="flex items-center justify-center w-1/3 font-semibold text-lg"><AiFillMinusCircle  className="cursor-pointer text-pink-500"/> <span className="mx-2 text-sm">1</span> <AiFillPlusCircle className="cursor-pointer text-pink-500"/></div>
+          </div>
+        </li>
+       
       </ul>
-      
+      <button className="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg items-center"><BsFillBagCheckFill className="mx-2"/> Checkout</button>
     </div>
     </div>
   );
