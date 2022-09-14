@@ -12,7 +12,7 @@ const Tshirts = () => {
     <div className="flex flex-wrap -m-4 justify-center">
       
 
-    <Link href={"/product/wear-the-code"}><div className="cursor-pointer  p-6 px-16 shadow-lg m-5 ">
+    <Link href={"/product/wear-the-code"}><div className="cursor-pointer  p-6 px-16 shadow-lg m-5">
         <a className="block relative  rounded overflow-hidden">
           <img alt="ecommerce" className="m-auto h-72  block" src="https://m.media-amazon.com/images/I/81DKTXzkwnL._UY741_.jpg"/>
         </a>

@@ -11,7 +11,8 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     if(localStorage.getItem("cart")){
       try {
-        setCart(JSON.parse(localStorage.getItem('cart')));
+        setCart(JSON.parse(localStorage.getItem('cart')))
+        saveCart(JSON.parse(localStorage.getItem('cart')))
       } catch (error) {
         console.error(error);
         localStorage.clear()
@@ -22,7 +23,7 @@ function MyApp({ Component, pageProps }) {
 
   const saveCart = (myCart) =>{
     localStorage.setItem('cart', JSON.stringify(myCart));
-    let subt = subTotal;
+    let subt = 0;
     let keys = Object.keys(myCart);
     for (let i = 0; i < keys.length; i++) {
       subt += myCart[keys[i]].price * myCart[keys[i]].qty;
@@ -63,7 +64,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <Navbar cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart = {clearCart} subTotal={subTotal} />
+      <Navbar key={subTotal} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart = {clearCart} subTotal={subTotal} />
       <Component cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart = {clearCart} subTotal={subTotal} {...pageProps} />
       <Footer />
     </>
