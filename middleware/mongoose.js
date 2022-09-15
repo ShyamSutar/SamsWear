@@ -8,4 +8,8 @@ const connectDb = handler => async(req, res) => {
     return handler(req, res);
 }
 
+// const connectDb = async() => {
+//     await mongoose.connect(process.env.MONGO_URI)
+// }
+
 export default connectDb;

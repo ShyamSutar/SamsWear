@@ -26,14 +26,14 @@ const Navbar2 = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
       
 
       <div className="logo flex items-center mx-5 mt-2 md:mt-0">
-      <Link href={"/"}>
+      <Link href={"/"}><a>
             <Image
             src="/logo.png"
             className="cursor-pointer m-4 mr-3 h-6 sm:h-9"
             height={25}
             width={120}
             alt="Flowbite Logo"
-          /></Link>
+          /></a></Link>
       </div>
 
       <div className="nav py-4">
@@ -46,8 +46,8 @@ const Navbar2 = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
       </div>
 
       <div className="cart cursor-pointer absolute right-1 top-2 md:right-2 md:top-4 flex">
-        <Link href={"/login"}><MdAccountCircle className="text-3xl text-center hover:text-blue-700"/></Link>
-        <AiOutlineShoppingCart className="text-3xl text-center hover:text-blue-700 " onClick={toggleCart}/>
+        <Link href={"/login"}><a><MdAccountCircle className="text-3xl text-center hover:text-blue-700"/></a></Link>
+        <a><AiOutlineShoppingCart className="text-3xl text-center hover:text-blue-700 " onClick={toggleCart}/></a>
       </div>
 
 
@@ -70,7 +70,7 @@ const Navbar2 = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
       </ol>
       <span className="font-bold">SubTotal: ₹ {subTotal}</span>
           <div className="flex">
-            <Link href={"/checkout"}><button className="flex mr-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded text-base items-center"><BsFillBagCheckFill className="mx-2"/> Checkout</button></Link>
+            <Link href={"/checkout"}><a><button className="flex mr-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded text-base items-center"><BsFillBagCheckFill className="mx-2"/> Checkout</button></a></Link>
             <button onChange={clearCart} onClick={()=>{clearCart()}} className="flex mx-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded text-base "> Clear Cart</button>
           </div>
        </div>
