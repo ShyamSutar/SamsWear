@@ -46,8 +46,8 @@ const Navbar2 = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
       </div>
 
       <div className="cart cursor-pointer absolute right-1 top-2 md:right-2 md:top-4 flex">
-        <Link href={"/login"}><MdAccountCircle className="text-3xl text-center "/></Link>
-        <AiOutlineShoppingCart className="text-3xl text-center" onClick={toggleCart}/>
+        <Link href={"/login"}><MdAccountCircle className="text-3xl text-center hover:text-blue-700"/></Link>
+        <AiOutlineShoppingCart className="text-3xl text-center hover:text-blue-700 " onClick={toggleCart}/>
       </div>
 
 
