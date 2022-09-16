@@ -38,16 +38,16 @@ const Navbar2 = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
 
       <div className="nav py-4">
         <ul className="flex items-center space-x-4 font-sans  text-base md:text-lg ">
-          <Link href={"/tshirts"}><a><li className="hover:text-blue-700">Tshirts</li></a></Link>
-          <Link href={"/hoodies"}><a><li className="hover:text-blue-700">Hoodies</li></a></Link>
-          <Link href={"/stickers"}><a><li className="hover:text-blue-700">Stickers</li></a></Link>
-          <Link href={"/mugs"}><a><li className="hover:text-blue-700">Mugs</li></a></Link>
+          <Link href={"/tshirts"}><a><li className="hover:text-indigo-700">Tshirts</li></a></Link>
+          <Link href={"/hoodies"}><a><li className="hover:text-indigo-700">Hoodies</li></a></Link>
+          <Link href={"/stickers"}><a><li className="hover:text-indigo-700">Stickers</li></a></Link>
+          <Link href={"/mugs"}><a><li className="hover:text-indigo-700">Mugs</li></a></Link>
         </ul>
       </div>
 
       <div className="cart cursor-pointer absolute right-1 top-2 md:right-2 md:top-4 flex">
-        <Link href={"/login"}><a><MdAccountCircle className="text-3xl text-center hover:text-blue-700"/></a></Link>
-        <a><AiOutlineShoppingCart className="text-3xl text-center hover:text-blue-700 " onClick={toggleCart}/></a>
+        <Link href={"/login"}><a><MdAccountCircle className="text-3xl text-center hover:text-indigo-700"/></a></Link>
+        <a><AiOutlineShoppingCart className="text-3xl text-center hover:text-indigo-700 " onClick={toggleCart}/></a>
       </div>
 
 
@@ -62,7 +62,7 @@ const Navbar2 = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
        </div>}
         {Object.keys(cart).map((k)=>{return <li key={k}>
           <div className="item flex my-5">
-          <div className="w-2/3 font-semibold">{cart[k].name}</div>
+          <div className="w-2/3 font-semibold">{cart[k].name} ({cart[k].size}/{cart[k].variant})</div>
           <div className="flex items-center justify-center w-1/3 font-semibold text-lg"><AiFillMinusCircle onClick={()=>{removeFromCart(k, 1, cart[k].name, cart[k].size, cart[k].variant)}} className="cursor-pointer  text-indigo-500"/> <span className="mx-2 text-sm">{cart[k].qty}</span> <AiFillPlusCircle onClick={()=>{addToCart(k, 1, cart[k].name, cart[k].size, cart[k].variant)}} className="cursor-pointer text-indigo-500"/></div>
           </div>
         </li>})}
