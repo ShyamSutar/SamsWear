@@ -188,14 +188,14 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
               </div>
               <div className="flex space-x-2 justify-center md:justify-start">
                 <span className="title-font font-medium text-lg md:text-2xl text-gray-900">
-                  ₹499.00
+                  ₹{product.price}.00
                 </span>
                 <button
                   onClick={() => {
                     buyNow(
                       slug,
                       1,
-                      499,
+                      product.price,
                       product.title,
                       product.size,
                       product.color
@@ -210,7 +210,7 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
                     addToCart(
                       slug,
                       1,
-                      499,
+                      product.price,
                       product.title,
                       product.size,
                       product.color
@@ -269,7 +269,7 @@ export async function getServerSideProps(context) {
     await mongoose.connect(process.env.MONGO_URI);
   }
   let product = await Product.findOne({ slug: context.query.slug });
-  let varients = await Product.find({ title: product.title });
+  let varients = await Product.find({ title: product.title, category:product.category });
   let colorSizeSlug = {};
   for (let item of varients) {
     if (Object.keys(colorSizeSlug).includes(item.color)) {
