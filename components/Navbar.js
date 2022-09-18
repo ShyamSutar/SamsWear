@@ -51,7 +51,7 @@ const Navbar2 = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
       </div>
 
 
-      <div ref={ref} className={`sidecart absolute  top-0 right-0 bg-indigo-100 py-10 px-8 z-10 w-72 h-[100vh] tansform transition-transform  ${Object.keys(cart).length !== 0 ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div ref={ref} className={`sidecart overflow-y-scroll absolute  top-0 right-0 bg-indigo-100 py-10 px-8 z-10 w-96 h-[100vh] tansform transition-transform  ${Object.keys(cart).length !== 0 ? 'translate-x-0' : 'translate-x-full'}`}>
 
       <h2 className="font-bold text-xl text-center">Shopping Cart</h2>
 
@@ -66,12 +66,13 @@ const Navbar2 = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
           <div className="flex items-center justify-center w-1/3 font-semibold text-lg"><AiFillMinusCircle onClick={()=>{removeFromCart(k, 1, cart[k].name, cart[k].size, cart[k].variant)}} className="cursor-pointer  text-indigo-500"/> <span className="mx-2 text-sm">{cart[k].qty}</span> <AiFillPlusCircle onClick={()=>{addToCart(k, 1, cart[k].name, cart[k].size, cart[k].variant)}} className="cursor-pointer text-indigo-500"/></div>
           </div>
         </li>})}
+        
        
       </ol>
       <span className="font-bold">SubTotal: ₹ {subTotal}</span>
           <div className="flex">
-            <Link href={"/checkout"}><a><button className="flex mr-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded text-base items-center"><BsFillBagCheckFill className="mx-2"/> Checkout</button></a></Link>
-            <button onChange={clearCart} onClick={()=>{clearCart()}} className="flex mx-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded text-base "> Clear Cart</button>
+            <Link href={"/checkout"}><a><button className="flex mr-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded text-base items-center"><BsFillBagCheckFill className="mx-2"/>Checkout</button></a></Link>
+            <button onChange={clearCart} onClick={()=>{clearCart()}} className="flex mx-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded text-base ">Clear Cart</button>
           </div>
        </div>
     </div>
