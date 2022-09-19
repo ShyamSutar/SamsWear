@@ -1,11 +1,85 @@
 import Link from "next/link";
-import React from "react";
+import Router from "next/router";
+import React,{useState} from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
+
+  const [credentials, setCredentials] = useState({
+    email: "".toLowerCase(),
+    password: "",
+  });
+
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // credentials.email.toLowerCase();
+    const { email, password } = credentials;
+
+    // let lowerEmail = email.toLowerCase();
+
+    const response = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({email:email.toLowerCase(), password }),
+    });
+
+    const json = await response.json();
+    console.log(json);
+
+    
+
+    if(json.success){
+      toast.success("You are successfully logged in", {
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setCredentials({ email: "", password: "" });
+
+      setTimeout(() => {
+        Router.push('/')
+      }, 1500);
+
+    }else{
+      toast.error(json.error, {
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+
+  };
+
   return (
     <>
       <div className="container -mt-12 mx-auto flex flex-col justify-center h-[100vh]">
-      <form>
+      <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <form method="POST" onSubmit={handleSubmit}>
         <h2 className="text-center text-3xl font-extrabold">
           Sign in to your account
         </h2>
@@ -25,8 +99,11 @@ const Login = () => {
               Email
             </label>
             <input
+              onChange={onChange}
+              value={credentials.email}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-600"
               id="email"
+              name="email"
               type="email"
               placeholder="Email"
             />
@@ -39,6 +116,9 @@ const Login = () => {
               Password
             </label>
             <input
+              onChange={onChange}
+              value={credentials.password}
+              name="password"
               className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-600 mb-3"
               id="password"
               type="password"

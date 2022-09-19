@@ -5,6 +5,7 @@ const handler = async (req,res) => {
 
     if(req.method == 'POST'){
         let u = new User(req.body);
+        // console.log("s", req.body);
         await u.save()
         
     res.status(200).json({success: "success"});
