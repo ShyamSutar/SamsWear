@@ -1,5 +1,6 @@
 import User from "../../models/User";
 import connectDb from "../../middleware/mongoose";
+var CryptoJS = require("crypto-js");
 
 const handler = async (req, res) => {
   if (req.method == "POST") {
@@ -7,7 +8,7 @@ const handler = async (req, res) => {
     // console.log("l",req.body);
 
     if (user) {
-      if (req.body.email == user.email && req.body.password == user.password) {
+      if (req.body.email == user.email && req.body.password == CryptoJS.AES.decrypt(user.password,process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8)) {
         res.status(200).json({ success: true});
       }
     else{
