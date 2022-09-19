@@ -55,7 +55,17 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
-        <ToastContainer />
+        <ToastContainer
+          position="top-left"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <div className="lg:w-1/2 w-full flex justify-center items-center">
@@ -269,7 +279,10 @@ export async function getServerSideProps(context) {
     await mongoose.connect(process.env.MONGO_URI);
   }
   let product = await Product.findOne({ slug: context.query.slug });
-  let varients = await Product.find({ title: product.title, category:product.category });
+  let varients = await Product.find({
+    title: product.title,
+    category: product.category,
+  });
   let colorSizeSlug = {};
   for (let item of varients) {
     if (Object.keys(colorSizeSlug).includes(item.color)) {
