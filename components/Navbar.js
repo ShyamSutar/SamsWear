@@ -84,8 +84,8 @@ const Navbar2 = ({
 
       <div className="cart cursor-pointer absolute right-1 top-2 md:right-2 md:top-4 flex">
        
-<a onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}}>
-  {dropdown && <div onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}} className="absolute right-8 bg-indigo-300 top-7 py-4 rounded-md px-5 w-32">
+<div onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}}>
+  {dropdown && <div onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}} className="absolute right-8 shadow-lg bg-white border top-7 py-4 rounded-md px-5 w-32">
     <ul>
       <Link href={".myaccount"}><a><li className="py-1 hover:text-indigo-700 text-sm">My Account</li></a></Link>
       <Link href={"/orders"}><a><li className="py-1 hover:text-indigo-700 text-sm">Orders</li></a></Link>
@@ -94,7 +94,7 @@ const Navbar2 = ({
   </div>}
 
 {user.value &&  <MdAccountCircle className="text-3xl text-center hover:text-indigo-700" />}
-</a>
+</div>
         <Link href={"/login"}>
           <a>
             {!user.value && (

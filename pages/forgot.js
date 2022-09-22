@@ -1,7 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Link from 'next/link'
+import Router from 'next/router'
 
 const Forgot = () => {
+
+  useEffect(() => {
+    if(localStorage.getItem('token')){
+      Router.push('/')
+    }
+  }, [])
+
   return (
     <div className="container -mt-12 mx-auto flex flex-col justify-center h-[100vh]">
         <h2 className="text-center text-3xl font-extrabold">

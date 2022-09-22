@@ -1,10 +1,17 @@
 import Link from "next/link";
 import Router from "next/router";
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
+
+  useEffect(() => {
+    if(localStorage.getItem('token')){
+      Router.push('/')
+    }
+  }, [])
+  
 
   const [credentials, setCredentials] = useState({
     email: "".toLowerCase(),
