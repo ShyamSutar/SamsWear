@@ -93,6 +93,7 @@ function MyApp({ Component, pageProps }) {
     localStorage.removeItem("token")
     setuser({value:null})
     setkey(Math.random)
+    router.push('/')
   }
 
   return (

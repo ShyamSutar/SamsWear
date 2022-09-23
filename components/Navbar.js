@@ -87,7 +87,7 @@ const Navbar2 = ({
 <div onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}}>
   {dropdown && <div onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}} className="absolute right-8 shadow-lg bg-white border top-7 py-4 rounded-md px-5 w-32">
     <ul>
-      <Link href={".myaccount"}><a><li className="py-1 hover:text-indigo-700 text-sm">My Account</li></a></Link>
+      <Link href={"/myaccount"}><a><li className="py-1 hover:text-indigo-700 text-sm">My Account</li></a></Link>
       <Link href={"/orders"}><a><li className="py-1 hover:text-indigo-700 text-sm">Orders</li></a></Link>
       <li  onClick={logout} className="py-1 hover:text-indigo-700 text-sm">Logout</li>
     </ul>
