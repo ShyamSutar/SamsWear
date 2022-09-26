@@ -29,7 +29,7 @@ const Signup = () => {
     e.preventDefault();
     const { name, email, password } = credentials;
 
-    const response = await fetch("http://localhost:3000/api/signup", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,6 +39,10 @@ const Signup = () => {
 
     const json = await response.json();
     console.log(json);
+
+    setTimeout(() => {
+      Router.push('/login')
+    }, 1500);
 
     setCredentials({ name: "", email: "", password: "" });
 
@@ -52,6 +56,8 @@ const Signup = () => {
       progress: undefined,
     });
   };
+
+
 
   return (
     <div className="container -mt-12 mx-auto flex flex-col justify-center h-[100vh]">

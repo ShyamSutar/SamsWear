@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "../styles/globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -10,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   const [cart, setCart] = useState({});
   const [subTotal, setSubTotal] = useState(0)
   const [user, setuser] = useState({value:null})
-  const [key, setkey] = useState(0)
+  const [key, setkey] = useState(10)
   const [progress, setProgress] = useState(0)
   const router = useRouter()
 
@@ -105,7 +106,7 @@ function MyApp({ Component, pageProps }) {
         height={3}
         onLoaderFinished={() => setProgress(0)}
       />
-      <Navbar user={user} key={key} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart = {clearCart} subTotal={subTotal} logout={logout} />
+      {key && <Navbar user={user} key={key} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart = {clearCart} subTotal={subTotal} logout={logout} />}
       <Component cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart = {clearCart} subTotal={subTotal} buyNow={buyNow} {...pageProps} />
       <Footer />
     </>

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
@@ -6,6 +7,9 @@ import { BsFillBagCheckFill } from "react-icons/bs";
 const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
   return (
     <div className="container px-2 sm:mx-auto">
+    <Head>
+      <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/>
+    </Head>
       <h1 className="text-3xl m-4 font-bold text-center">Checkout</h1>
 
       <h2 className="text-xl font-semibold">1. Delivery Details</h2>
