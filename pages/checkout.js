@@ -1,10 +1,43 @@
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
+import React,{useState} from "react";
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
 
 const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
+
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    address: "",
+    phone: "",
+    city: "",
+    state: "",
+    pincode: "",
+  });
+  
+  
+  // const [disabled, setdisabled] = useState(false)
+
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    
+    // if(credentials.name == "" && credentials.email == "" && credentials.address == "" && credentials.phone == "" && credentials.city == "" && credentials.state == "" && credentials.pincode == ""){
+    //   setdisabled(false)
+    // }if(credentials.name != "" && credentials.email != "" && credentials.address != "" && credentials.phone != "" && credentials.city != "" && credentials.state != "" && credentials.pincode != ""){
+    //   setdisabled(true)
+    // }
+
+    // if(!credentials.name){
+    //   setdisabled(true)
+    // }else if(credentials.name){
+    //   setdisabled(true)
+    // }
+
+    
+  }; 
+
+
   return (
     <div className="container px-2 sm:mx-auto">
     <Head>
@@ -14,6 +47,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
 
       <h2 className="text-xl font-semibold">1. Delivery Details</h2>
 
+      <form>
       <div className="mx-auto flex my-2">
         <div className="px-2 w-1/2">
           <div className="mb-4">
@@ -21,6 +55,8 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
               Name
             </label>
             <input
+              onChange={onChange}
+              value={credentials.name}
               type="text"
               id="name"
               name="name"
@@ -35,6 +71,8 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
               Email
             </label>
             <input
+              onChange={onChange}
+              value={credentials.email}
               type="email"
               id="email"
               name="email"
@@ -47,10 +85,12 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
       <div className="px-2 w-full">
         <div className="mb-4">
           <label htmlFor="email" className="leading-7 text-sm text-gray-600">
-            Email
+            Address
           </label>
 
           <textarea
+            onChange={onChange}
+            value={credentials.address}
             cols="30"
             rows="2"
             id="address"
@@ -67,6 +107,8 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
               Phone
             </label>
             <input
+              onChange={onChange}
+              value={credentials.phone}
               type="phone"
               id="phone"
               name="phone"
@@ -81,6 +123,8 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
               City
             </label>
             <input
+              onChange={onChange}
+              value={credentials.city}
               type="text"
               id="city"
               name="city"
@@ -97,6 +141,8 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
               State
             </label>
             <input
+              onChange={onChange}
+              value={credentials.state}
               type="text"
               id="state"
               name="state"
@@ -111,6 +157,8 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
               Pincode
             </label>
             <input
+              onChange={onChange}
+              value={credentials.pincode}
               type="text"
               id="pincode"
               name="pincode"
@@ -119,6 +167,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
           </div>
         </div>
       </div>
+      
 
       <h2 className="text-xl font-semibold">2. Review Cart Items & Pay</h2>
 
@@ -140,8 +189,9 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
        </div>
 
        <div className="">
-          <button className="flex pl-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded text-base items-center"><BsFillBagCheckFill className="mx-2"/> Pay ₹ {subTotal}</button>
+          <button disabled={!credentials.name || !credentials.email || !credentials.address || !credentials.phone || !credentials.city || !credentials.state || !credentials.pincode} className="disabled:bg-indigo-300 flex pl-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded text-base items-center"><BsFillBagCheckFill className="mx-2"/> Pay ₹ {subTotal}</button>
           </div>
+          </form>
 
     </div>
   );
