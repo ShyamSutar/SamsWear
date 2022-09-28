@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   const [cart, setCart] = useState({});
   const [subTotal, setSubTotal] = useState(0)
   const [user, setuser] = useState({value:null})
-  const [key, setkey] = useState(10)
+  const [key, setkey] = useState()
   const [progress, setProgress] = useState(0)
   const router = useRouter()
 
@@ -36,13 +36,13 @@ function MyApp({ Component, pageProps }) {
     let token = localStorage.getItem('token')
     if(token){
       setuser({value:token})
-      setkey(Math.random())
     }
+    setkey(Math.random())
   }, [router.query])
 
   const buyNow = (itemCode, qty, price, name, size, variant)=>{
-    saveCart({})
-    let newCart = {itemCode:{qty: 1, price, name, size, variant}};
+    let newCart = {}
+    newCart[itemCode]={qty: 1, price, name, size, variant};
     setCart(newCart);
     saveCart(newCart);
     router.push('/checkout')

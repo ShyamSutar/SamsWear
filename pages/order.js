@@ -1,7 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
+import { useRouter } from 'next/router'
+import Order from '../models/Order'
+import mongoose from 'mongoose'
 
-const Order = () => {
+
+const MyOrder = ({order}) => {
+
+  console.log(order);
+  
+
   return (
     <div>
 
@@ -14,10 +22,10 @@ const Order = () => {
 
         <p className="leading-relaxed mb-4">Your order has successfully placed</p>
 
-        <div class="flex mb-4">
-          <a class="flex-grow py-2 text-lg px-1 ">Item Description</a>
-          <a class="flex-grow py-2 text-lg px-1 ">Quantity</a>
-          <a class="flex-grow py-2 text-lg px-1 ">Item Total</a>
+        <div className="flex mb-4">
+          <a className="flex-grow py-2 text-lg px-1 ">Item Description</a>
+          <a className="flex-grow py-2 text-lg px-1 ">Quantity</a>
+          <a className="flex-grow py-2 text-lg px-1 ">Item Total</a>
         </div>
 
         <div className="flex border-t border-gray-200 py-2">
@@ -50,4 +58,16 @@ const Order = () => {
   )
 }
 
-export default Order
+export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URI);
+  }
+  let order = await Order.findById(context.query.id);
+  return {
+    props: {
+      order: JSON.parse(JSON.stringify(order)),
+    }, // will be passed to the page component as props
+  };
+}
+
+export default MyOrder

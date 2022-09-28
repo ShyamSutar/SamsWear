@@ -3,6 +3,9 @@ import Link from "next/link";
 import React,{useState} from "react";
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
+import "react-toastify/dist/ReactToastify.css";
+import Router from 'next/router'
+import { ToastContainer, toast } from "react-toastify";
 
 const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
 
@@ -11,8 +14,8 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
     email: "",
     address: "",
     phone: "",
-    city: "",
-    state: "",
+    city: "default",
+    state: "default",
     pincode: "",
   });
   
@@ -34,12 +37,75 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
     //   setdisabled(true)
     // }
 
-    
   }; 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // credentials.email.toLowerCase();
+    const { name, email, address, phone, city, state, pincode } = credentials;
+
+    // let lowerEmail = email.toLowerCase();
+    let oid = Math.floor(Math.random() * Date.now());
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/postorders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({email:email.toLowerCase(), oid, cart, subTotal, name, address, pincode, phone}),
+    });
+
+    const json = await response.json();
+    console.log(json);
+
+    
+
+    if(json.success){
+      toast.success("Your order Successfully Placed", {
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setCredentials({ name: "",
+      email: "",
+      address: "",
+      phone: "",
+      city: "default",
+      state: "default",
+      pincode: "" });
+
+
+    }else{
+      toast.error(json.error, {
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+
+  };
 
 
   return (
     <div className="container px-2 sm:mx-auto">
+    <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     <Head>
       <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/>
     </Head>
@@ -47,7 +113,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
 
       <h2 className="text-xl font-semibold">1. Delivery Details</h2>
 
-      <form>
+      <form method="POST" onSubmit={handleSubmit}>
       <div className="mx-auto flex my-2">
         <div className="px-2 w-1/2">
           <div className="mb-4">
@@ -118,16 +184,16 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
         </div>
 
         <div className="px-2 w-1/2">
-          <div className="mb-4">
-            <label htmlFor="city" className="leading-7 text-sm text-gray-600">
-              City
+        <div className="mb-4">
+            <label htmlFor="pincode" className="leading-7 text-sm text-gray-600">
+              Pincode
             </label>
             <input
               onChange={onChange}
-              value={credentials.city}
+              value={credentials.pincode}
               type="text"
-              id="city"
-              name="city"
+              id="pincode"
+              name="pincode"
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
@@ -141,6 +207,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
               State
             </label>
             <input
+              readOnly
               onChange={onChange}
               value={credentials.state}
               type="text"
@@ -152,16 +219,17 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
         </div>
 
         <div className="px-2 w-1/2">
-          <div className="mb-4">
-            <label htmlFor="pincode" className="leading-7 text-sm text-gray-600">
-              Pincode
+        <div className="mb-4">
+            <label htmlFor="city" className="leading-7 text-sm text-gray-600">
+              City
             </label>
             <input
+              readOnly
               onChange={onChange}
-              value={credentials.pincode}
+              value={credentials.city}
               type="text"
-              id="pincode"
-              name="pincode"
+              id="city"
+              name="city"
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
