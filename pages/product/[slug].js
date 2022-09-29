@@ -13,9 +13,9 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
   const [service, setservice] = useState();
 
   const checkServiceability = async () => {
-    let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode}`);
+    let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
     let pinJson = await pins.json();
-    if (pinJson.includes(parseInt(pin))) {
+    if (Object.keys(pinJson).includes(pin)) {
       setservice(true);
       toast.success("Your pincode is serviceable.!", {
         position: "top-left",

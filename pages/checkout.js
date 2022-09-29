@@ -14,16 +14,43 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
     email: "",
     address: "",
     phone: "",
-    city: "default",
-    state: "default",
+    city: "",
+    state: "",
     pincode: "",
   });
   
   
   // const [disabled, setdisabled] = useState(false)
 
-  const onChange = (e) => {
+  const onChange = async(e) => {
+
+    
+
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
+
+    if(e.target.name == 'pincode'){
+      if(e.target.value.length == 6){
+        let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
+        let pinJson = await pins.json();
+        if(Object.keys(pinJson).includes(e.target.value)){
+          setCredentials({
+            state: pinJson[e.target.value][1],
+            city: pinJson[e.target.value][0]
+          })
+          console.log(credentials.state);
+        }else{
+          setCredentials({
+            state: '',
+            city: ''
+          })
+        }
+      }else{
+        setCredentials({
+          state: '',
+          city: ''
+        })
+      }
+    }
     
     // if(credentials.name == "" && credentials.email == "" && credentials.address == "" && credentials.phone == "" && credentials.city == "" && credentials.state == "" && credentials.pincode == ""){
     //   setdisabled(false)
@@ -73,8 +100,8 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
       email: "",
       address: "",
       phone: "",
-      city: "default",
-      state: "default",
+      city: "",
+      state: "",
       pincode: "" });
 
       setTimeout(() => {
