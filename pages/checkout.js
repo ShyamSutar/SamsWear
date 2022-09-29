@@ -77,6 +77,10 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
       state: "default",
       pincode: "" });
 
+      setTimeout(() => {
+        Router.push('/order?id='+ json.id)
+      }, 1000);
+
 
     }else{
       toast.error(json.error, {
@@ -92,6 +96,10 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
 
   };
 
+
+  const handlePay = () => {
+    // Router.push('/order?id=' + Order._id)
+  }
 
   return (
     <div className="container px-2 sm:mx-auto">
