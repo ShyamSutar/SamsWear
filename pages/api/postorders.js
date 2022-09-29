@@ -1,5 +1,6 @@
 import Order from "../../models/Order";
 import connectDb from "../../middleware/mongoose";
+import Product from "../../models/Product";
 
 
 const handler = async (req,res) => {
@@ -10,6 +11,20 @@ const handler = async (req,res) => {
         
 
         //check if the cart is tampered with
+        let product, sumTotal=0;
+        let cart = req.body.cart
+        for(let item in req.body.cart){
+            sumTotal += cart[item].price * cart[item].qty
+            console.log(item);
+            product = await Product.findOne({slug: item})
+            if(product.price != cart[item].price){
+                res.status(200).json({"error": true})
+            }
+        }
+
+        if(sumTotal !== req.body.subTotal){
+            res.status(200).json({"error":true})
+        }
 
         //check if the cart items are out of stock
 

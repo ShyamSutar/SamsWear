@@ -14,11 +14,11 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
     email: "",
     address: "",
     phone: "",
-    city: "",
-    state: "",
     pincode: "",
   });
-  
+
+  const [city, setcity] = useState('')
+  const [state, setstate] = useState('')
   
   // const [disabled, setdisabled] = useState(false)
 
@@ -33,28 +33,22 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
         let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
         let pinJson = await pins.json();
         if(Object.keys(pinJson).includes(e.target.value)){
-          setCredentials({
-            state: pinJson[e.target.value][1],
-            city: pinJson[e.target.value][0]
-          })
-          console.log(credentials.state);
+          setcity(pinJson[e.target.value][0])
+          setstate(pinJson[e.target.value][1])
+          console.log(state);
         }else{
-          setCredentials({
-            state: '',
-            city: ''
-          })
+          setcity('')
+          setstate('')
         }
       }else{
-        setCredentials({
-          state: '',
-          city: ''
-        })
+        setcity('')
+        setstate('')
       }
     }
     
-    // if(credentials.name == "" && credentials.email == "" && credentials.address == "" && credentials.phone == "" && credentials.city == "" && credentials.state == "" && credentials.pincode == ""){
+    // if(credentials.name == "" && credentials.email == "" && credentials.address == "" && credentials.phone == "" && city == "" && state == "" && credentials.pincode == ""){
     //   setdisabled(false)
-    // }if(credentials.name != "" && credentials.email != "" && credentials.address != "" && credentials.phone != "" && credentials.city != "" && credentials.state != "" && credentials.pincode != ""){
+    // }if(credentials.name != "" && credentials.email != "" && credentials.address != "" && credentials.phone != "" && city != "" && state != "" && credentials.pincode != ""){
     //   setdisabled(true)
     // }
 
@@ -100,8 +94,6 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
       email: "",
       address: "",
       phone: "",
-      city: "",
-      state: "",
       pincode: "" });
 
       setTimeout(() => {
@@ -244,7 +236,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
             <input
               readOnly
               onChange={onChange}
-              value={credentials.state}
+              value={state}
               type="text"
               id="state"
               name="state"
@@ -261,7 +253,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
             <input
               readOnly
               onChange={onChange}
-              value={credentials.city}
+              value={city}
               type="text"
               id="city"
               name="city"
@@ -292,7 +284,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
        </div>
 
        <div className="">
-          <button disabled={!credentials.name || !credentials.email || !credentials.address || !credentials.phone || !credentials.city || !credentials.state || !credentials.pincode} className="disabled:bg-indigo-300 flex pl-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded text-base items-center"><BsFillBagCheckFill className="mx-2"/> Pay ₹ {subTotal}</button>
+          <button disabled={!credentials.name || !credentials.email || !credentials.address || !credentials.phone || !credentials.pincode} className="disabled:bg-indigo-300 flex pl-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded text-base items-center"><BsFillBagCheckFill className="mx-2"/> Pay ₹ {subTotal}</button>
           </div>
           </form>
 
