@@ -164,6 +164,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart,clearCart}) => {
             <label htmlFor="email" className="leading-7 text-sm text-gray-600">
               Email
             </label>
+            
             <input
               onChange={onChange}
               value={credentials.email}
