@@ -5,7 +5,7 @@ import Product from "../../models/Product";
 
 const handler = async (req,res) => {
 
-    let success = false;
+    let success = true;
 
     if(req.method == 'POST'){
         
@@ -13,20 +13,30 @@ const handler = async (req,res) => {
         //check if the cart is tampered with
         let product, sumTotal=0;
         let cart = req.body.cart
+
         for(let item in req.body.cart){
             sumTotal += cart[item].price * cart[item].qty
             console.log(item);
             product = await Product.findOne({slug: item})
+            
+            
+            //check if the cart items are out of stock
+            if(product.availableQty < cart[item].qty){
+                res.status(200).json({success:false, error: "Some items in your cart went out of stock, Please try again later..." })
+                return
+            }
+
             if(product.price != cart[item].price){
-                res.status(200).json({"error": true})
+                res.status(400).json({success: false, errror: "Error"})
+                return
             }
         }
 
         if(sumTotal !== req.body.subTotal){
-            res.status(200).json({"error":true})
+            res.status(400).json({success: false, errror: "Error"})
+            return
         }
 
-        //check if the cart items are out of stock
 
         //check if the details are valid
 
@@ -39,6 +49,10 @@ const handler = async (req,res) => {
 
         await u.save()
 
+        let products = (u.products)
+        for(let slug in products){
+            await Product.findOneAndUpdate({slug: slug}, {$inc: {"availableQty": -products[slug].qty}})
+        }
         
         success = true;
 

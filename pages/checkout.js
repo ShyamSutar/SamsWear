@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Router from 'next/router'
 import { ToastContainer, toast } from "react-toastify";
 
-const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
+const Checkout = ({removeFromCart, subTotal, addToCart, cart,clearCart}) => {
 
   const [credentials, setCredentials] = useState({
     name: "",
@@ -98,6 +98,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart}) => {
 
       setTimeout(() => {
         Router.push('/order?id='+ json.id)
+        clearCart()
       }, 1000);
 
 
