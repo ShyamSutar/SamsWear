@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import mongoose from "mongoose";
 import Product from "../../models/Product";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,6 +11,16 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
   const { slug } = router.query;
   const [pin, setpin] = useState();
   const [service, setservice] = useState();
+
+  const [color, setcolor] = useState(product.color);
+  const [size, setsize] = useState(product.size);
+
+  useEffect(() => {
+    
+    setcolor(product.color)
+    setsize(product.size)
+  
+  }, [router.query])
 
   const checkServiceability = async () => {
     let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
@@ -44,12 +54,13 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
     setpin(e.target.value);
   };
 
-  const [color, setcolor] = useState(product.color);
-  const [size, setsize] = useState(product.size);
+
+ 
 
   const refreshVarient = (newsize, newcolor) => {
     let url = `${process.env.NEXT_PUBLIC_HOST}/product/${varients[newcolor][newsize]["slug"]}`;
-    window.location = url;
+    // window.location = url;
+    router.push(url)
   };
 
   return (

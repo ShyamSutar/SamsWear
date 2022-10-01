@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   AiOutlineShoppingCart,
   AiFillCloseCircle,
@@ -22,27 +22,23 @@ const Navbar2 = ({
   logout
 }) => {
   const [dropdown, setdropdown] = useState(false);
+  const [sidebar, setsidebar] = useState(false)
 
-  const toggleDropdown = () => {
-    setdropdown(!dropdown);
-  };
+  useEffect(() => {
+    
+    Object.keys(cart).length !== 0 && setsidebar(true)
+  
+  }, [])
+  
 
   const toggleCart = () => {
-    if (ref.current.classList.contains("translate-x-full")) {
-      ref.current.classList.remove("translate-x-full");
-      ref.current.classList.add("translate-x-0");
-      ref.current.classList.remove("hidden");
-    } else if (ref.current.classList.contains("translate-x-0")) {
-      ref.current.classList.remove("translate-x-0");
-      ref.current.classList.add("translate-x-full");
-      ref.current.classList.add("hidden");
-    }
+    setsidebar(!sidebar)
   };
 
   const ref = useRef();
 
   return (
-    <div className="sticky top-0 z-10 bg-white flex flex-col md:flex-row justify-center md:justify-start items-center shadow-md">
+    <div className={`sticky top-0 z-10 bg-white flex flex-col md:flex-row justify-center md:justify-start items-center shadow-md ${!sidebar && 'overflow-hidden'}`}>
       <div className="logo flex items-center mx-5 mt-2 md:mt-0">
         <Link href={"/"}>
           <a>
@@ -114,8 +110,8 @@ const Navbar2 = ({
 
       <div
         ref={ref}
-        className={`sidecart overflow-y-scroll absolute  top-0 right-0 bg-indigo-100 py-10 px-8 z-10 w-96 h-[100vh] tansform transition-transform  ${
-          Object.keys(cart).length !== 0 ? "translate-x-0" : "translate-x-full"
+        className={`sidecart overflow-y-scroll absolute top-0 bg-indigo-100 py-10 px-8 z-10 w-96 h-[100vh] transition-all  ${
+          sidebar ? "right-0" : "-right-96"
         }`}
       >
         <h2 className="font-bold text-xl text-center">Shopping Cart</h2>
