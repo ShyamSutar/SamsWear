@@ -10,6 +10,7 @@ import {
 import { BsFillBagCheckFill } from "react-icons/bs";
 import { MdAccountCircle } from "react-icons/md";
 import Script from "next/script";
+import { useRouter } from "next/router";
 
 
 const Navbar2 = ({
@@ -24,9 +25,17 @@ const Navbar2 = ({
   const [dropdown, setdropdown] = useState(false);
   const [sidebar, setsidebar] = useState(false)
 
+  const router = useRouter();
+
+
   useEffect(() => {
     
     Object.keys(cart).length !== 0 && setsidebar(true)
+  
+    if(router.pathname == '/checkout' || router.pathname == '/orders' || router.pathname == '/order'){
+      setsidebar(false)
+    }
+
   
   }, [])
   
@@ -38,7 +47,21 @@ const Navbar2 = ({
   const ref = useRef();
 
   return (
-    <div className={`sticky top-0 z-10 bg-white flex flex-col md:flex-row justify-center md:justify-start items-center shadow-md ${!sidebar && 'overflow-hidden'}`}>
+    <>
+
+<div >
+  {dropdown && <div onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}} className="absolute right-12 shadow-lg bg-white border top-11 py-4 rounded-md px-5 w-32 z-30">
+    <ul>
+      <Link href={"/myaccount"}><a><li className="py-1 hover:text-indigo-700 text-sm">My Account</li></a></Link>
+      <Link href={"/orders"}><a><li className="py-1 hover:text-indigo-700 text-sm">Orders</li></a></Link>
+      <li  onClick={logout} className="py-1 hover:text-indigo-700 text-sm">Logout</li>
+    </ul>
+  </div>}
+
+
+</div>
+
+      <div className={`sticky top-0 z-10 bg-white flex flex-col md:flex-row justify-center md:justify-start items-center shadow-md ${!sidebar && 'overflow-hidden'}`}>
       <div className="logo flex items-center mx-5 mt-2 md:mt-0">
         <Link href={"/"}>
           <a>
@@ -80,17 +103,7 @@ const Navbar2 = ({
 
       <div className="cart cursor-pointer absolute right-1 top-2 md:right-2 md:top-4 flex">
        
-<div onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}}>
-  {dropdown && <div onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}} className="absolute right-8 shadow-lg bg-white border top-7 py-4 rounded-md px-5 w-32">
-    <ul>
-      <Link href={"/myaccount"}><a><li className="py-1 hover:text-indigo-700 text-sm">My Account</li></a></Link>
-      <Link href={"/orders"}><a><li className="py-1 hover:text-indigo-700 text-sm">Orders</li></a></Link>
-      <li  onClick={logout} className="py-1 hover:text-indigo-700 text-sm">Logout</li>
-    </ul>
-  </div>}
 
-{user.value &&  <MdAccountCircle className="text-3xl text-center hover:text-indigo-700" />}
-</div>
         <Link href={"/login"}>
           <a>
             {!user.value && (
@@ -99,7 +112,10 @@ const Navbar2 = ({
               </button>
             )}
           </a>
+
+        
         </Link>
+        <span onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}}>{user.value &&  <MdAccountCircle className="text-3xl text-center hover:text-indigo-700" />}</span>
         <a>
           <AiOutlineShoppingCart
             className="text-3xl text-center hover:text-indigo-700 "
@@ -190,6 +206,7 @@ const Navbar2 = ({
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></Script>
 
     </div>
+    </>
   );
 };
 
