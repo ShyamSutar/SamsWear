@@ -203,6 +203,9 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart,clearCart}) => {
             </label>
             <input
               onChange={onChange}
+              pattern="\d*"
+              minLength={10}
+              maxLength={10}
               value={credentials.phone}
               type="phone"
               id="phone"
@@ -218,9 +221,12 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart,clearCart}) => {
               Pincode
             </label>
             <input
+              minLength={6}
+              maxLength={6}
               onChange={onChange}
               value={credentials.pincode}
               type="text"
+              pattern="\d*"
               id="pincode"
               name="pincode"
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"

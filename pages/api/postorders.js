@@ -44,6 +44,13 @@ const handler = async (req,res) => {
 
 
         //check if the details are valid
+        // if(!Number.isInteger(req.body.phone)){
+        //     res.status(200).json({success:false, error: "Please enter a valid mobile number" })
+        // }
+
+        // if((req.body.pincode).isInteger){
+        //     res.status(200).json({success:false, error: "Please enter a valid pincode" })
+        // }
 
         const u = new Order({
             email: req.body.email,
