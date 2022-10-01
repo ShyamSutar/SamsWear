@@ -5,20 +5,24 @@ import mongoose from "mongoose";
 import Product from "../../models/Product";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Error from "next/error";
 
-const Post = ({ addToCart, product, varients, buyNow }) => {
+const Post = ({ addToCart, product, varients, buyNow, error }) => {
   const router = useRouter();
   const { slug } = router.query;
   const [pin, setpin] = useState();
   const [service, setservice] = useState();
 
-  const [color, setcolor] = useState(product.color);
-  const [size, setsize] = useState(product.size);
+  const [color, setcolor] = useState();
+  const [size, setsize] = useState();
 
   useEffect(() => {
-    
+
+  if(!error){
     setcolor(product.color)
     setsize(product.size)
+  }
+    
   
   }, [router.query])
 
@@ -63,6 +67,9 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
     router.push(url)
   };
 
+  if(error == 404){
+    return <Error statusCode={404}/>
+  }
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -175,19 +182,19 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
                       value={size}
                       className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10"
                     >
-                      {Object.keys(varients[color]).includes("S") && (
+                      {color && Object.keys(varients[color]).includes("S") && (
                         <option value={"S"}>S</option>
                       )}
-                      {Object.keys(varients[color]).includes("M") && (
+                      {color && Object.keys(varients[color]).includes("M") && (
                         <option value={"M"}>M</option>
                       )}
-                      {Object.keys(varients[color]).includes("L") && (
+                      {color && Object.keys(varients[color]).includes("L") && (
                         <option value={"L"}>L</option>
                       )}
-                      {Object.keys(varients[color]).includes("XL") && (
+                      {color && Object.keys(varients[color]).includes("XL") && (
                         <option value={"XL"}>Xl</option>
                       )}
-                      {Object.keys(varients[color]).includes("XLL") && (
+                      {color && Object.keys(varients[color]).includes("XLL") && (
                         <option value={"XLL"}>XLL</option>
                       )}
                     </select>
@@ -291,10 +298,18 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
 };
 
 export async function getServerSideProps(context) {
+  let error = null;
   if (!mongoose.connections[0].readyState) {
     await mongoose.connect(process.env.MONGO_URI);
   }
   let product = await Product.findOne({ slug: context.query.slug });
+  if(product == null){
+    return {
+      props: {
+        error: 404,
+      }, // will be passed to the page component as props
+    };
+  }
   let varients = await Product.find({
     title: product.title,
     category: product.category,
@@ -309,8 +324,10 @@ export async function getServerSideProps(context) {
     }
   }
 
+
   return {
     props: {
+      error: error,
       product: JSON.parse(JSON.stringify(product)),
       varients: JSON.parse(JSON.stringify(colorSizeSlug)),
     }, // will be passed to the page component as props
