@@ -250,7 +250,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart,clearCart}) => {
         <div className="px-2 w-1/2">
         <div className="mb-4">
             <label htmlFor="city" className="leading-7 text-sm text-gray-600">
-              City
+              District
             </label>
             <input
               readOnly

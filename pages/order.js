@@ -44,7 +44,7 @@ const MyOrder = ({order}) => {
           
         </div>
       </div>
-      <Image height={500} width={500} alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={"/orders.png"}/>
+      <Image height={300} width={500} alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={"/orders.png"}/>
     </div>
   </div>
 </section>

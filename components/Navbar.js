@@ -172,7 +172,7 @@ const Navbar2 = ({
         <div className="flex">
           <Link href={"/checkout"}>
             <a>
-              <button className="flex mr-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded text-base items-center">
+              <button disabled={Object.keys(cart).length === 0} className="flex mr-2 mt-2 text-white bg-indigo-500 disabled:bg-indigo-300 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded text-base items-center">
                 <BsFillBagCheckFill className="mx-2" />
                 Checkout
               </button>
@@ -183,7 +183,8 @@ const Navbar2 = ({
             onClick={() => {
               clearCart();
             }}
-            className="flex mx-2 mt-2 text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded text-base "
+            disabled={Object.keys(cart).length === 0}
+            className="flex mx-2 mt-2 text-white bg-indigo-500 disabled:bg-indigo-300 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded text-base "
           >
             Clear Cart
           </button>

@@ -14,6 +14,11 @@ const handler = async (req,res) => {
         let product, sumTotal=0;
         let cart = req.body.cart
 
+        if(req.body.subTotal <= 0){
+            res.status(200).json({success:false, error: "Please build your cart and try again"})
+            return
+        }
+
         for(let item in req.body.cart){
             sumTotal += cart[item].price * cart[item].qty
             console.log(item);
