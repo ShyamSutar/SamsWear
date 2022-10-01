@@ -208,9 +208,12 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
                 </div>
               </div>
               <div className="flex space-x-2 justify-center md:justify-start">
-                <span className="title-font font-medium text-lg md:text-2xl text-gray-900">
+              {product.availableQty>0 && <span className="title-font font-medium text-lg md:text-2xl text-gray-900">
                   ₹{product.price}.00
-                </span>
+                </span>}
+                {product.availableQty<=0 && <span className="title-font font-medium text-lg md:text-2xl text-gray-900">
+                  Out of Stock..!
+                </span>}
                 <button
                   onClick={() => {
                     buyNow(
@@ -222,7 +225,8 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
                       product.color
                     );
                   }}
-                  className="flex text-white bg-indigo-500 border-0 py-2 px-2 text-base md:px-6 focus:outline-none hover:bg-indigo-600 rounded"
+                  disabled={product.availableQty <= 0}
+                  className="flex disabled:bg-indigo-300 text-white bg-indigo-500 border-0 py-2 px-2 text-base md:px-6 focus:outline-none hover:bg-indigo-600 rounded"
                 >
                   Buy Now
                 </button>
@@ -246,7 +250,8 @@ const Post = ({ addToCart, product, varients, buyNow }) => {
                     //   progress: undefined,
                     // });
                   }}
-                  className="flex  text-white bg-indigo-500 border-0 py-2 px-2 md:px-6 text-base focus:outline-none hover:bg-indigo-600 rounded"
+                  disabled={product.availableQty <= 0}
+                  className="flex disabled:bg-indigo-300 text-white bg-indigo-500 border-0 py-2 px-2 md:px-6 text-base focus:outline-none hover:bg-indigo-600 rounded"
                 >
                   Add to Cart
                 </button>
