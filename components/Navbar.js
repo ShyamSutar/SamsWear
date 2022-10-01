@@ -32,7 +32,7 @@ const Navbar2 = ({
     
     Object.keys(cart).length !== 0 && setsidebar(true)
   
-    if(router.pathname == '/checkout' || router.pathname == '/orders' || router.pathname == '/order'){
+    if(router.pathname == '/checkout' || router.pathname == '/orders' || router.pathname == '/order' || router.pathname == '/myaccount'){
       setsidebar(false)
     }
 
@@ -49,12 +49,12 @@ const Navbar2 = ({
   return (
     <>
 
-<div >
-  {dropdown && <div onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}} className="absolute right-12 shadow-lg bg-white border top-11 py-4 rounded-md px-5 w-32 z-30">
+<div>
+  {dropdown && <div onMouseOver={() => {setdropdown(true)}} onMouseLeave={() => {setdropdown(false)}} className="fixed right-12 shadow-lg bg-white border top-11 py-4 rounded-md px-5 w-32 z-30">
     <ul>
       <Link href={"/myaccount"}><a><li className="py-1 hover:text-indigo-700 text-sm">My Account</li></a></Link>
       <Link href={"/orders"}><a><li className="py-1 hover:text-indigo-700 text-sm">Orders</li></a></Link>
-      <li  onClick={logout} className="py-1 hover:text-indigo-700 text-sm">Logout</li>
+      <a><li  onClick={logout} className="cursor-pointer py-1 hover:text-indigo-700 text-sm">Logout</li></a>
     </ul>
   </div>}
 
