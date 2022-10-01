@@ -1,6 +1,7 @@
 import Order from "../../models/Order";
 import connectDb from "../../middleware/mongoose";
 import Product from "../../models/Product";
+import pincodes from "./pincodes.json"
 
 
 const handler = async (req,res) => {
@@ -9,6 +10,12 @@ const handler = async (req,res) => {
 
     if(req.method == 'POST'){
         
+        //check if the pincode is serviceable
+        if((!Object.keys(pincodes).includes(req.body.pincode))){
+            res.status(200).json({success:false, error: "The pincode is not serviceable..!"})
+            return
+        }
+
 
         //check if the cart is tampered with
         let product, sumTotal=0;
