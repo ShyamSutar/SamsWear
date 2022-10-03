@@ -9,16 +9,21 @@ const handler = async (req,res) => {
         if(req.method == "POST"){
             let token = req.body.token;
             let user = jsonwebtoken.verify(token, process.env.SECRET_KEY);
-            if(req.body.cpassword == req.body.password){
-            let dbuser = await User.findOneAndUpdate({email: user.email},{password:cryptoJs.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString()})
+
+            let dbuser = await User.findOne({email: user.email})
+            const decryptedPassword = cryptoJs.AES.decrypt(dbuser.password ,process.env.SECRET_KEY).toString(cryptoJs.enc.Utf8)
+
+            if(decryptedPassword == req.body.currentpassword && req.body.npassword == req.body.cpassword){
+
+                let dbuser = await User.findOneAndUpdate({email: user.email},{password:cryptoJs.AES.encrypt(req.body.npassword, process.env.SECRET_KEY).toString()})
+            }else{
+                res.status(200).json({error: "incorrect password or passwords do not matched"})
+            }
         }else{
             res.status(200).json({error:"error"})
         }
         res.status(200).json({success: true});
-        }else{
-            res.status(400).json({error:"error"})
         }
-    }
 
 
 export default connectDb(handler);

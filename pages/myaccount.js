@@ -22,7 +22,8 @@ const Myaccount = ({
     address: "",
     phone: "",
     pincode: "",
-    password: "",
+    currentpassword: "",
+    npassword: "",
     cpassword: "",
   });
 
@@ -56,7 +57,8 @@ const Myaccount = ({
       email: json.email,
       address: json.address,
       phone: json.phone,
-      password: "",
+      currentpassword: "",
+      npassword: "",
       cpassword: ""})
   }
 
@@ -81,7 +83,8 @@ const Myaccount = ({
         },
         body: JSON.stringify({
           token: localStorage.getItem("token"),
-          password:credentials.password,
+          currentpassword:credentials.currentpassword,
+          npassword:credentials.npassword,
           cpassword: credentials.cpassword,
         }),
       }
@@ -299,17 +302,17 @@ const Myaccount = ({
             <div className="px-2 w-1/2">
               <div className="mb-4">
                 <label
-                  htmlFor="password"
+                  htmlFor="currentpassword"
                   className="leading-7 text-sm text-gray-600"
                 >
-                  Password
+                  Current Password
                 </label>
                 <input
                   onChange={onChange}
                   value={credentials.password}
                   type="password"
-                  id="password"
-                  name="password"
+                  id="currentpassword"
+                  name="currentpassword"
                   className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
@@ -318,7 +321,26 @@ const Myaccount = ({
             <div className="px-2 w-1/2">
               <div className="mb-4">
                 <label
-                  htmlFor="password"
+                  htmlFor="npassword"
+                  className="leading-7 text-sm text-gray-600"
+                >
+                  New Password
+                </label>
+                <input
+                  onChange={onChange}
+                  value={credentials.password}
+                  type="password"
+                  id="npassword"
+                  name="npassword"
+                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+              </div>
+            </div>
+
+            <div className="px-2 w-1/2">
+              <div className="mb-4">
+                <label
+                  htmlFor="cpassword"
                   className="leading-7 text-sm text-gray-600"
                 >
                   Confirm Password
