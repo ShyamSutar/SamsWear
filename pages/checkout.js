@@ -179,7 +179,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart,clearCart}) => {
 
       <div className="px-2 w-full">
         <div className="mb-4">
-          <label htmlFor="email" className="leading-7 text-sm text-gray-600">
+          <label htmlFor="address" className="leading-7 text-sm text-gray-600">
             Address
           </label>
 

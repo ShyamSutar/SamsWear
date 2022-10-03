@@ -20,6 +20,11 @@ const OrderSchema = new mongoose.Schema({
         }
     ,
     address: {type: String, required: true},
+    city: {type: String, required: true},
+    state: {type: String, required: true},
+    pincode: {type: String, required: true},
+    phone: {type: String, required: true},
+    name: {type: String, required: true},
     amount: {type: Number, required: true},
     status: {type: String, default: 'Pending',required: true},
 },{timestamps: true});
