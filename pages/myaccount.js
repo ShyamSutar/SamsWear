@@ -55,7 +55,9 @@ const Myaccount = ({
       pincode: json.pincode,
       email: json.email,
       address: json.address,
-      phone: json.address})
+      phone: json.phone,
+      password: "",
+      cpassword: ""})
   }
 
 
@@ -71,7 +73,7 @@ const Myaccount = ({
     const { name, email, address, phone, pincode } = credentials;
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST}/api/getuser`,
+      `${process.env.NEXT_PUBLIC_HOST}/api/updatepassword`,
       {
         method: "POST",
         headers: {
@@ -79,6 +81,8 @@ const Myaccount = ({
         },
         body: JSON.stringify({
           token: localStorage.getItem("token"),
+          password:credentials.password,
+          cpassword: credentials.cpassword,
         }),
       }
     );
@@ -87,7 +91,7 @@ const Myaccount = ({
     console.log(json);
 
     if (json.success) {
-      toast.success("Your order Successfully Placed", {
+      toast.success("Successfully updated", {
         position: "top-left",
         autoClose: 2000,
         hideProgressBar: false,
@@ -134,7 +138,7 @@ const Myaccount = ({
     console.log(json);
 
     if (json.success) {
-      toast.success("Your order Successfully Placed", {
+      toast.success("Successfully Updated", {
         position: "top-left",
         autoClose: 2000,
         hideProgressBar: false,
@@ -158,6 +162,17 @@ const Myaccount = ({
 
   return (
     <div className="container mx-auto">
+    <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <h1 className="text-3xl text-center my-9 font-bold">
         Update your Account
       </h1>
