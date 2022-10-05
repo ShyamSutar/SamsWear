@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,27 +22,68 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart,clearCart}) => {
   
   // const [disabled, setdisabled] = useState(false)
 
-  const onChange = async(e) => {
+  const fetchData = async(token) => {
+    const { name, email, address, phone, pincode } = credentials;
 
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST}/api/getuser`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token: localStorage.getItem("token"),
+        }),
+      }
+    );
+
+    const json = await response.json();
+    console.log(json);
+    setCredentials({name: json.name,
+      pincode: json.pincode,
+      email: json.email,
+      address: json.address,
+      phone: json.phone,
+      currentpassword: "",
+      npassword: "",
+      cpassword: ""})
+
+      getPinCode(json.pincode)
+  }
+
+  const getPinCode = async(pin) => {
     
-
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-
-    if(e.target.name == 'pincode'){
-      if(e.target.value.length == 6){
+      
         let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
         let pinJson = await pins.json();
-        if(Object.keys(pinJson).includes(e.target.value)){
-          setcity(pinJson[e.target.value][0])
-          setstate(pinJson[e.target.value][1])
+        if(Object.keys(pinJson).includes(pin)){
+          setcity(pinJson[pin][0])
+          setstate(pinJson[pin][1])
           console.log(state);
         }else{
           setcity('')
           setstate('')
         }
+      
+    
+  }
+
+  useEffect(() => {
+    fetchData(localStorage.getItem("token"))
+  }, [])
+  
+
+  const onChange = async(e) => {
+
+
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+
+    if(e.target.name == 'pincode'){
+      if(e.target.value.length == 6){
+        getPinCode(e.target.value)
       }else{
-        setcity('')
-        setstate('')
+        
       }
     }
     
