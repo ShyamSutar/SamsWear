@@ -93,6 +93,15 @@ const Myaccount = ({
     const json = await response.json();
     console.log(json);
 
+    setCredentials({name: json.name,
+      pincode: json.pincode,
+      email: json.email,
+      address: json.address,
+      phone: json.phone,
+      currentpassword: "",
+      npassword: "",
+      cpassword: ""})
+
     if (json.success) {
       toast.success("Successfully updated", {
         position: "top-left",
@@ -103,6 +112,8 @@ const Myaccount = ({
         draggable: true,
         progress: undefined,
       });
+
+      
     } else {
       toast.error(json.error, {
         position: "top-left",
@@ -309,7 +320,7 @@ const Myaccount = ({
                 </label>
                 <input
                   onChange={onChange}
-                  value={credentials.password}
+                  value={credentials.currentpassword}
                   type="password"
                   id="currentpassword"
                   name="currentpassword"
@@ -328,7 +339,7 @@ const Myaccount = ({
                 </label>
                 <input
                   onChange={onChange}
-                  value={credentials.password}
+                  value={credentials.npassword}
                   type="password"
                   id="npassword"
                   name="npassword"

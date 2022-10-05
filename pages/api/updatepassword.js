@@ -13,6 +13,10 @@ const handler = async (req,res) => {
             let dbuser = await User.findOne({email: user.email})
             const decryptedPassword = cryptoJs.AES.decrypt(dbuser.password ,process.env.SECRET_KEY).toString(cryptoJs.enc.Utf8)
 
+            if(req.body.currentpassword == req.body.npassword){
+                res.status(200).json({error: "try different password"})
+            }
+
             if(decryptedPassword == req.body.currentpassword && req.body.npassword == req.body.cpassword){
 
                 let dbuser = await User.findOneAndUpdate({email: user.email},{password:cryptoJs.AES.encrypt(req.body.npassword, process.env.SECRET_KEY).toString()})
