@@ -207,6 +207,7 @@ const Checkout = ({removeFromCart, subTotal, addToCart, cart,clearCart}) => {
             </label>
             
             <input
+              readOnly
               onChange={onChange}
               value={credentials.email}
               type="email"
