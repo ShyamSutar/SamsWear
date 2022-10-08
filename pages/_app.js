@@ -85,6 +85,7 @@ function MyApp({ Component, pageProps }) {
     if(newCart[itemCode].qty <= 0){
       delete newCart[itemCode];
     }
+    
 
     setCart(newCart)
     saveCart(newCart);
