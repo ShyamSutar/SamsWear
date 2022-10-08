@@ -106,9 +106,12 @@ function MyApp({ Component, pageProps }) {
         height={3}
         onLoaderFinished={() => setProgress(0)}
       />
+   
+
       {key && <Navbar user={user} key={key} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart = {clearCart} subTotal={subTotal} logout={logout}/>}
       <Component cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart = {clearCart} subTotal={subTotal} buyNow={buyNow} {...pageProps} />
       <Footer />
+      
     </>
   );
 }
