@@ -19,8 +19,6 @@
     "clsx": "1.1.1",
     "crypto-js": "^4.1.1",
     "feather-icons-react": "^0.5.0",
-    "flowbite": "^1.5.3",
-    "flowbite-react": "^0.1.10",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.1",
     "next": "12.3.0",
