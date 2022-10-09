@@ -1,59 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head'
-import Image from 'next/image'
-import { Grid, ImageList, ImageListItem } from "@mui/material";
-import BaseCard from "../src/components/baseCard/BaseCard";
-import theme from "../src/theme/theme";
+
 
 export default function Home() {
 
-  function srcset(image, size, rows = 1, cols = 1) {
-    return {
-      src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-      srcSet: `${image}?w=${size * cols}&h=${
-        size * rows
-      }&fit=crop&auto=format&dpr=2 2x`,
-    };
-  }
-  
-  const itemData = [
-    {
-      img: "https://www.codeswear.com/_next/image?url=%2Fimg%2Fbanner-1.webp&w=1920&q=75",
-      title: "Breakfast",
-      rows: 3,
-      cols: 2,
-    },
-    {
-      img: "https://www.codeswear.com/_next/image?url=%2Fimg%2Fbanner-2_1.webp&w=1920&q=75",
-      title: "Burger",
-      rows: 3,
-      cols: 1,
-    },
-    {
-      img: "https://www.codeswear.com/_next/image?url=%2Fimg%2Fbanner-2_2.webp&w=1920&q=75",
-      title: "Camera",
-      rows: 3,
-      cols: 1,
-    },
-    {
-      img: "https://www.codeswear.com/_next/image?url=%2Fimg%2Fbanner-3_1.webp&w=1920&q=75",
-      title: "Camera",
-      rows: 3,
-      cols: 1,
-    },
-    {
-      img: "https://www.codeswear.com/_next/image?url=%2Fimg%2Fbanner-3_2.webp&w=1920&q=75",
-      title: "Burger",
-      rows: 3,
-      cols: 1,
-    },
-    {
-      img: "https://www.codeswear.com/_next/image?url=%2Fimg%2Fbanner-4.webp&w=1920&q=75",
-      title: "Breakfast",
-      rows: 3,
-      cols: 2,
-    },
-  ];
+
 
   return (
     <div>
@@ -63,41 +14,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      
-
-      <div>
-        {/* <Image src="/head.jpg" width={2200} height={500} alt='heading Image'/> */}
-        <Grid container spacing={0}>
-      <Grid item xs={12} lg={12}>
-        <BaseCard>
-          <ImageList
-          className='2xl:px-36'
-            variant="woven"
-            cols={4}
-            rowHeight={110}
-          >
-            {itemData.map((item) => (
-              <ImageListItem
-                key={item.img}
-                cols={item.cols || 1}
-                rows={item.rows || 1}
-                
-              >
-                <img
-                  {...srcset(item.img, 121, item.rows, item.cols)}
-                  alt={item.title}
-                  loading="lazy"
-                  
-                />
-
-
-              </ImageListItem>
-            ))}
-          </ImageList>
-        </BaseCard>
-      </Grid>
-    </Grid>
-      </div>
 
       <section className="text-gray-600 body-font">
   <div className="container px-5 py-24 mx-auto">
@@ -181,7 +97,7 @@ export default function Home() {
     </div>
   </div>
 </section>
-      
+
     </div>
   )
 }
