@@ -175,7 +175,7 @@ const Myaccount = ({
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-1">
     <ToastContainer
         position="top-left"
         autoClose={2000}
@@ -216,7 +216,7 @@ const Myaccount = ({
                 htmlFor="email"
                 className="leading-7 text-sm text-gray-600"
               >
-                Email (cannot be updated)
+                Email
               </label>
 
               <input
@@ -310,8 +310,8 @@ const Myaccount = ({
 
       <form method="POST" onSubmit={handlePassword}>
         
-          <div className="mx-auto flex my-2">
-            <div className="px-2 w-1/2">
+          <div className="mx-auto flex my-2 flex-col md:flex-row">
+            <div className="px-1 md:w-1/3">
               <div className="mb-4">
                 <label
                   htmlFor="currentpassword"
@@ -325,12 +325,12 @@ const Myaccount = ({
                   type="password"
                   id="currentpassword"
                   name="currentpassword"
-                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className=" w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
             </div>
 
-            <div className="px-2 w-1/2">
+            <div className="px-1 md:w-1/3">
               <div className="mb-4">
                 <label
                   htmlFor="npassword"
@@ -344,12 +344,12 @@ const Myaccount = ({
                   type="password"
                   id="npassword"
                   name="npassword"
-                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className=" w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
             </div>
 
-            <div className="px-2 w-1/2">
+            <div className="px-1 md:w-1/3">
               <div className="mb-4">
                 <label
                   htmlFor="cpassword"
@@ -363,7 +363,7 @@ const Myaccount = ({
                   type="password"
                   id="cpassword"
                   name="cpassword"
-                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className=" w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
             </div>

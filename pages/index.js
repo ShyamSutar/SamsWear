@@ -23,7 +23,7 @@ export default function Home() {
       <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">Wear whatever you want? What do you want? You want code so why not Samswear.</p>
     </div>
     <div className="flex flex-wrap -m-4">
-      <div className="xl:w-1/3 md:w-1/2 p-4">
+      <div className="xl:w-1/3 md:w-1/2 w-full p-4">
         <div className="border border-gray-200 p-6 rounded-lg">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
@@ -34,7 +34,7 @@ export default function Home() {
           <p className="leading-relaxed text-base">Our T-Shirts are 100% made of cotton.</p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
+      <div className="xl:w-1/3 md:w-1/2 w-full p-4">
         <div className="border border-gray-200 p-6 rounded-lg">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
@@ -47,7 +47,7 @@ export default function Home() {
           <p className="leading-relaxed text-base">We ship all over India for FREE.</p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
+      <div className="xl:w-1/3 md:w-1/2 w-full p-4">
         <div className="border border-gray-200 p-6 rounded-lg">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
@@ -59,7 +59,7 @@ export default function Home() {
           <p className="leading-relaxed text-base">We provide amazing offers & discounts on our products.</p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
+      <div className="xl:w-1/3 md:w-1/2 w-full p-4">
         <div className="border border-gray-200 p-6 rounded-lg">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
@@ -70,7 +70,7 @@ export default function Home() {
           <p className="leading-relaxed text-base">Our T-Shirts are 100% made of cotton.</p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
+      <div className="xl:w-1/3 md:w-1/2 w-full p-4">
         <div className="border border-gray-200 p-6 rounded-lg">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
@@ -83,7 +83,7 @@ export default function Home() {
           <p className="leading-relaxed text-base">We ship all over India for FREE.</p>
         </div>
       </div>
-      <div className="xl:w-1/3 md:w-1/2 p-4">
+      <div className="xl:w-1/3 md:w-1/2 w-full p-4">
         <div className="border border-gray-200 p-6 rounded-lg">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
             <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
