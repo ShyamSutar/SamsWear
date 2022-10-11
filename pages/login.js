@@ -24,10 +24,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // credentials.email.toLowerCase();
     const { email, password } = credentials;
 
-    // let lowerEmail = email.toLowerCase();
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
       method: "POST",
