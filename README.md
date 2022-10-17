@@ -21,7 +21,7 @@ A Complete E-Commerce Website built using React, NextJS and TailwindCss
 
 # myAccount Page
 
-![myAccount](/public/myAccount.PNG?raw=true)
+![myAccount](/public/myAccount.png?raw=true)
 
 # admin Panel
 
