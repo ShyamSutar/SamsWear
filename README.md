@@ -1,29 +1,29 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). [Click here to View](https://samswear.vercel.app/)
 
-## SamsWear
+# SamsWear
 
 A Complete E-Commerce Website built using React, NextJS and TailwindCss
 
 ## Demo ScreenShots
 
-# Tshirt Page
+### Tshirt Page
 
 ![Tshirt Page](/public/tshirtPage.PNG?raw=true)
 
-# Products Page
+### Products Page
 
 ![Products Page](/public/productsPage.PNG?raw=true)
 
-# Checkout
+### Checkout
 
 ![Checkout](/public/checkoutPanel.PNG?raw=true)
 ![Checkout](/public/checkoutPage.PNG?raw=true)
 
-# myAccount Page
+### myAccount Page
 
 ![myAccount](/public/myAccount.png?raw=true)
 
-# admin Panel
+### admin Panel
 
 ![Admin Panel](/public/AdminPanel.PNG?raw=true)
 
