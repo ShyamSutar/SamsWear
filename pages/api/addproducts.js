@@ -17,7 +17,7 @@ const handler = async (req,res) => {
             availableQty: req.body[i].availableQty
         })
         await p.save();            
-rr
+
     }
     res.status(200).json({success: "success"});
     }else{

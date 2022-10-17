@@ -145,6 +145,17 @@ const Post = ({ addToCart, product, varients, buyNow, error }) => {
                         }`}
                       ></button>
                     )}
+                    {Object.keys(varients).includes("gray") &&
+                    Object.keys(varients["gray"]).includes(size) && (
+                      <button
+                        onClick={() => {
+                          refreshVarient(size, "gray");
+                        }}
+                        className={`border-2  ml-1 bg-gray-500 rounded-full w-6 h-6 focus:outline-none ${
+                          color === "blue" ? "border-black" : "border-gray-300"
+                        }`}
+                      ></button>
+                    )}
                   {Object.keys(varients).includes("purple") &&
                     Object.keys(varients["purple"]).includes(size) && (
                       <button
