@@ -6,7 +6,7 @@ A Complete E-Commerce Website built using React, NextJS and TailwindCss
 
 ## Demo ScreenShots
 
-![Tshirt Page](/public/tshirtPage.png?raw=true)
+![Tshirt Page](/public/tshirtPage.PNG?raw=true)
 ## Getting Started
 
 First, run the development server:
